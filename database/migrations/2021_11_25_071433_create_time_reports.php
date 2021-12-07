@@ -17,6 +17,7 @@ class CreateTimeReports extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('task_id');
             $table->foreign('task_id')->references('id')->on('tasks');
+            $table->boolean('removed');
             $table->timestamps();
         });
     }

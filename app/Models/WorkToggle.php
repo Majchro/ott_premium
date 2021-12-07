@@ -5,30 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Task;
 
-class TimeReport extends Model
+class WorkToggle extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
-        'task_id',
-        'start_time',
-        'end_time',
-        'removed',
+        'date_time',
     ];
 
     protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
+        'date_time' => 'datetime',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function task(): BelongsTo
-    {
-        return $this->belongsTo(Task::class);
     }
 }

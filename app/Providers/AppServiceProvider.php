@@ -3,26 +3,17 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+    public function register() {}
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        Blade::directive('rowBackground', function ($index) {
+            return "<?php echo (int) $index % 2 === 0 ? 'bg-white' : 'bd-gray-50' ?>";
+        });
     }
 }
