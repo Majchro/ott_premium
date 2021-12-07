@@ -10,3 +10,4 @@ Route::get('/', fn(): View => view('homepage'));
 Route::post('/login', [AuthController::class, 'authentication'])->name('auth-login');
 
 Route::resource('dashboard', DashboardController::class)->only('index');
+Route::get('wrongdoings', [DashboardController::class, 'wrongdoings']);

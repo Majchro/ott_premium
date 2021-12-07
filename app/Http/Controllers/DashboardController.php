@@ -25,4 +25,9 @@ class DashboardController extends Controller
             'tableData' => $tableData,
         ]);
     }
+
+    public function wrongdoings()
+    {
+        return view('wrongdoings');
+    }
 }
