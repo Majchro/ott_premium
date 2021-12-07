@@ -138,7 +138,7 @@ class DashboardService
     {
         $start = $dateRange->first()->startOfDay();
         $end = $dateRange->last()->endOfDay();
-        
+
         return $this->timeReportRepository
             ->getForPeriod($this->userId, $start, $end)
             ->where('removed', false)
@@ -168,7 +168,7 @@ class DashboardService
         return "{$time} ({$percent}%)";
     }
 
-    private function getInOfficeSummary(Collection $workToggles): string
+    private function getInOfficeSummary(Collection $workToggles): ?string
     {
         $workTogglesSummary = $workToggles->reduce(function ($carry, $workToggle) {
             $start = $workToggle->first()->date_time;
@@ -179,7 +179,7 @@ class DashboardService
         return $this->parseSecondsToHuman($workTogglesSummary);
     }
 
-    private function getReportSummary(Collection $timeReports): string
+    private function getReportSummary(Collection $timeReports): ?string
     {
         $timeReportsSummary = $timeReports->flatten()->reduce(function ($carry, $timeReport) {
             return $carry + $timeReport->start_time->diffInSeconds($timeReport->end_time);
